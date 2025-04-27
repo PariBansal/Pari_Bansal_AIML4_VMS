@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Volunteer Management System</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="background-overlay"></div>
+
+    <header>
+      <div class="logo-section">
+        <img
+          src="{{ url_for('static', filename='logo.png.webp') }}"
+          alt="Logo"
+          class="logo"
+        />
+        <span class="brand-name">Volunty</span>
+      </div>
+      <nav>
+        <ul>
+          <li onclick="openModal()">Sign In</li>
+          <li onclick="toggleDarkMode()">Toggle Mode</li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <h1>Welcome Volunteers</h1>
+      <p>Join us in making a difference!</p>
+    </main>
+
+    <!-- Modal for Volunteer Registration -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Volunteer Sign Up</h2>
+        <input
+          type="text"
+          id="volunteerName"
+          placeholder="Name"
+          required
+        /><br />
+        <input
+          type="email"
+          id="volunteerEmail"
+          placeholder="Email"
+          required
+        /><br />
+        <input
+          type="text"
+          id="volunteerPhone"
+          placeholder="Phone Number"
+          required
+        /><br />
+        <select id="volunteerRole" required>
+          <option value="">Select Role</option>
+          <option value="Helper">Helper</option>
+          <option value="Coordinator">Coordinator</option>
+          <option value="Support Staff">Support Staff</option></select
+        ><br />
+        <button onclick="submitVolunteer()">Register</button>
+      </div>
+    </div>
+
+    <script>
+      // Open modal
+      function openModal() {
+        document.getElementById("myModal").style.display = "flex";
+      }
+
+      // Close modal
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      // Toggle dark mode
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+      }
+
+      // Submit Volunteer (for now, just shows alert)
+      function submitVolunteer() {
+        const name = document.getElementById("volunteerName").value.trim();
+        const email = document.getElementById("volunteerEmail").value.trim();
+        const phone = document.getElementById("volunteerPhone").value.trim();
+        const role = document.getElementById("volunteerRole").value;
+
+        if (!name || !email || !phone || !role) {
+          alert("Please fill in all fields.");
+          return;
+        }
+
+        alert("Thank you for registering, " + name + "!");
+        closeModal();
+      }
+    </script>
+  </body>
+</html>
