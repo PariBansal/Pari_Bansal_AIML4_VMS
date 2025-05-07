@@ -8,7 +8,7 @@ Volunteer Management System
 - Kaashvi Gupta
 
 ## 📽️ Video Explanation
-[Watch the Project Demo]("C:\Users\parib\OneDrive\AI ML\AI ML 2nd semester\Minor Project\Pari_Bansal_AIMLD_VMS\Pari_Bansal_AIMLD_VMS\project_video.mp4")
+[Watch the Project Demo](https://drive.google.com/file/d/1_SLykODGgbQOROSKCNYXjUgRd-TzApn3/view?usp=drive_link)
 
 # Volunteer Management System
 
