@@ -43,6 +43,7 @@ This is a Volunteer Management System built using **Python Flask**, **SQLite**, 
 
 '''bash
 git clone  https://github.com/PariBansal/Pari_Bansal_AIML4_VMS
+
 cd Pari_Bansal_AIML4_VMS
 
 ### 2. Create Virtual Env
@@ -68,5 +69,6 @@ export FLASK_ENV=development
 
 ### 5. Run the application
 python vms.py
+
 flask run
 Then visit http://localhost:5000 in your browser.
