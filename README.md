@@ -1,6 +1,15 @@
 # Pari_Bansal_AIMLD_VMS
 Volunteer Management System 
 
+## Team Members
+- Pari Bansal  
+- Anushka Singh  
+- Arpita Roy  
+- Kaashvi Gupta
+
+## 📽️ Video Explanation
+[Watch the Project Demo]("C:\Users\parib\OneDrive\AI ML\AI ML 2nd semester\Minor Project\Pari_Bansal_AIMLD_VMS\Pari_Bansal_AIMLD_VMS\project_video.mp4")
+
 # Volunteer Management System
 
 This is a Volunteer Management System built using **Python Flask**, **SQLite**, and **HTML/CSS**. It allows admins to manage events and volunteers to register, participate, and receive certificates for events.
