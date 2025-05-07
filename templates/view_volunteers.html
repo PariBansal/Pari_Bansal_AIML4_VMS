@@ -1,0 +1,42 @@
+{% extends 'admin_dashboard_base.html' %} {% block content %}
+<div class="dashboard-container">
+  <h1>All Volunteers</h1>
+
+  <table class="volunteers-table">
+    <thead>
+      <tr>
+        <th>Volunteer ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Course</th>
+        <th>Semester</th>
+      </tr>
+    </thead>
+    <tbody id="volunteerTableBody">
+      <!-- Volunteers will be inserted here by JavaScript -->
+    </tbody>
+  </table>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const volunteers = {{ volunteers | tojson }};
+        const volunteerTableBody = document.getElementById("volunteerTableBody");
+
+        volunteers.forEach(volunteer => {
+            const row = document.createElement("tr");
+            row.innerHTML =
+                '<td>' + volunteer.volunteer_id + '</td>' +
+                '<td>' + volunteer.first_name + '</td>' +
+                '<td>' + volunteer.last_name + '</td>' +
+                '<td>' + volunteer.email + '</td>' +
+                '<td>' + volunteer.mobile + '</td>' +
+                '<td>' + volunteer.course + '</td>' +
+                '<td>' + volunteer.semester + '</td>';
+            volunteerTableBody.appendChild(row);
+        });
+    });
+  </script>
+</div>
+{% endblock %}

@@ -1,0 +1,159 @@
+{% extends 'admin_dashboard_base.html' %} {% block content %}
+<div class="create-event-container">
+  <div class="form-wrapper">
+    <h2>Create Event</h2>
+    <form id="createEventForm">
+      <div class="form-group">
+        <label for="event_name">Event Name</label>
+        <input type="text" id="event_name" name="event_name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description" required />
+      </div>
+
+      <div class="form-group">
+        <label for="start_datetime">Start Date & Time</label>
+        <input
+          type="datetime-local"
+          id="start_datetime"
+          name="start_datetime"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="end_datetime">End Date & Time</label>
+        <input
+          type="datetime-local"
+          id="end_datetime"
+          name="end_datetime"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" required />
+      </div>
+
+      <button type="submit">Create Event</button>
+    </form>
+
+    <!-- Preview Table for Event Data -->
+    <div id="eventPreview" style="display: none; margin-top: 30px">
+      <h3>Event Preview</h3>
+      <table class="preview-table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Event Name</td>
+            <td id="previewEventName"></td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td id="previewDescription"></td>
+          </tr>
+          <tr>
+            <td>Start Date & Time</td>
+            <td id="previewStartDateTime"></td>
+          </tr>
+          <tr>
+            <td>End Date & Time</td>
+            <td id="previewEndDateTime"></td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td id="previewAddress"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  document
+    .getElementById("createEventForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Get form data
+      const event_name = document.getElementById("event_name").value.trim();
+      const description = document.getElementById("description").value.trim();
+      const start_datetime = document.getElementById("start_datetime").value;
+      const end_datetime = document.getElementById("end_datetime").value;
+      const address = document.getElementById("address").value.trim();
+      const now = new Date();
+
+      // Basic Validation
+      if (
+        !event_name ||
+        !description ||
+        !start_datetime ||
+        !end_datetime ||
+        !address
+      ) {
+        alert("All fields are required.");
+        return;
+      }
+
+      if (new Date(start_datetime) >= new Date(end_datetime)) {
+        alert("Start date/time must be before end date/time.");
+        return;
+      }
+
+      if (new Date(start_datetime) < now) {
+        alert("Start date/time cannot be in the past.");
+        return;
+      }
+
+      // Update the preview table
+      document.getElementById("previewEventName").innerText = event_name;
+      document.getElementById("previewDescription").innerText = description;
+      document.getElementById("previewStartDateTime").innerText =
+        start_datetime;
+      document.getElementById("previewEndDateTime").innerText = end_datetime;
+      document.getElementById("previewAddress").innerText = address;
+
+      // Show the preview table
+      document.getElementById("eventPreview").style.display = "block";
+
+      // Optionally, submit the form (e.g., using fetch)
+      const data = {
+        event_name,
+        description,
+        start_datetime,
+        end_datetime,
+        address,
+      };
+
+      fetch("/admin/create_event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Event created successfully! Event ID: " + data.event_id);
+            window.location.href = "{{ url_for('admin.view_events') }}"; // Redirect to Admin Dashboard
+          } else {
+            alert(data.error || "Failed to create event.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred. Please try again.");
+        });
+    });
+</script>
+{% endblock %}

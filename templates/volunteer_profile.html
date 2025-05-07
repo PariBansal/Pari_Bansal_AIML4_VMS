@@ -1,0 +1,21 @@
+{% extends 'volunteer_dashboard_base.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <h2>Volunteer Profile</h2>
+        <div class="profile-actions">
+            <a href="{{ url_for('volunteer.edit_profile') }}" class="btn-small">Edit</a>
+            <a href="{{ url_for('volunteer.delete_profile') }}" class="btn-small" onclick="return confirm('Are you sure you want to delete your profile?');">Delete</a>
+        </div>
+    </div>
+    <table class="profile-table">
+        <tr><th>First Name:</th><td>{{ volunteer.first_name }}</td></tr>
+        <tr><th>Last Name:</th><td>{{ volunteer.last_name }}</td></tr>
+        <tr><th>Email:</th><td>{{ volunteer.email }}</td></tr>
+        <tr><th>Mobile:</th><td>{{ volunteer.mobile }}</td></tr>
+        <tr><th>Course:</th><td>{{ volunteer.course }}</td></tr>
+        <tr><th>Semester:</th><td>{{ volunteer.semester }}</td></tr>
+    </table>
+</div>
+{% endblock %}

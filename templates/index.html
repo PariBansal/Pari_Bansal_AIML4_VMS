@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Management Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_index.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Volunteer Management Service</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="card-container">
+            <div class="card">
+                <h2>Volunteer Sign Up</h2>
+                <a href="{{ url_for('signup_form') }}" class="button-link">Sign Up</a>
+            </div>
+            <div class="card">
+                <h2>Volunteer Sign In</h2>
+                <a href="{{ url_for('signin_form') }}" class="button-link">Sign In</a>
+            </div>
+            <div class="card">
+                <h2>Admin Login</h2>
+                <a href="{{ url_for('admin_form') }}" class="button-link">Admin Login</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Volunteer Management Service. All rights reserved.</p>
+    </footer>
+</body>
+</html>

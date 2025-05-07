@@ -1,0 +1,123 @@
+/* General Styles for the Navbar */
+.navbar {
+    background-color: #2c3e50;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo-img {
+    height: 50px;
+}
+
+.navbar .brand-name {
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.navbar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar nav ul li {
+    margin-right: 15px;
+}
+
+.navbar nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.navbar nav ul li a:hover {
+    background-color: #34495e;
+    border-radius: 5px;
+}
+
+/* Styling for buttons (Logout, Delete Profile, etc.) */
+.logout-button, .delete-profile-button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.logout-button:hover, .delete-profile-button:hover {
+    background-color: #c0392b;
+}
+
+/* Content Styling */
+.dashboard-container {
+    padding: 20px;
+}
+
+.profile-container {
+    padding: 20px;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.profile-container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-actions a.btn-small {
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: #fff;
+    background: #007bff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.profile-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.profile-table td, .profile-table th {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.btn-register {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-registered {
+    background-color: #6c757d;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
+}

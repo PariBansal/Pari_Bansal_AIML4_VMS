@@ -1,0 +1,25 @@
+{% extends 'volunteer_dashboard_base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Edit Profile</h2>
+    <form method="POST">
+        <label>First Name:</label>
+        <input type="text" name="first_name" value="{{ volunteer.first_name }}" required>
+
+        <label>Last Name:</label>
+        <input type="text" name="last_name" value="{{ volunteer.last_name }}" required>
+
+        <label>Mobile:</label>
+        <input type="text" name="mobile" value="{{ volunteer.mobile }}" required>
+
+        <label>Course:</label>
+        <input type="text" name="course" value="{{ volunteer.course }}" required>
+
+        <label>Semester:</label>
+        <input type="text" name="semester" value="{{ volunteer.semester }}" required>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

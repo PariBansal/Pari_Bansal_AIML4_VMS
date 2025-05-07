@@ -1,0 +1,47 @@
+{% extends 'volunteer_dashboard_base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Registered Events</h2>
+
+    {% if events %}
+    <table class="events-table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Address</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event['event_name'] }}</td>
+                <td>{{ event['description'] }}</td>
+                <td>{{ event['start_datetime'] }}</td>
+                <td>{{ event['end_datetime'] }}</td>
+                <td>{{ event['address'] }}</td>
+                <td>{{ event['role'] }}</td>
+                <td>
+                    {% if event['start_datetime'] > now.strftime('%Y-%m-%d %H:%M:%S') %}
+                    <form method="POST" action="{{ url_for('volunteer.unregister_event', event_id=event['event_id']) }}">
+                        <button type="submit" class="btn btn-warning"
+                            onclick="return confirm('Are you sure you want to unregister from this event?')">Unregister</button>
+                    </form>
+                    {% else %}
+                    <span class="text-muted">Past</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>You are not registered for any events.</p>
+    {% endif %}
+</div>
+{% endblock %}

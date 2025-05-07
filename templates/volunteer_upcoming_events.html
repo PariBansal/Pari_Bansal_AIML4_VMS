@@ -1,0 +1,51 @@
+{% extends 'volunteer_dashboard_base.html' %}
+
+{% block content %}
+<div class="events-container">
+    <h2>Upcoming Events</h2>
+
+    {% if events %}
+    <table class="events-table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Description</th>
+                <th>Start Date-Time</th>
+                <th>End Date-Time</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.event_name }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.start_datetime }}</td>
+                <td>{{ event.end_datetime }}</td>
+                <td>{{ event.address }}</td>
+                <td>
+                    {% if event.event_id in registered_event_ids %}
+                        <button class="btn-registered" disabled>Registered</button>
+                    {% else %}
+                        <form action="{{ url_for('volunteer.register_event', event_id=event.event_id) }}" method="POST">
+                            <label for="role">Select Role:</label>
+                            <select name="role" required>
+                                <option value="">--Select Role--</option>
+                                <option value="Coordinator">Coordinator</option>
+                                <option value="Collaborator">Collaborator</option>
+                                <option value="Helper">Helper</option>
+                            </select>
+                            <button type="submit" class="btn-register">Register</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No upcoming events available.</p>
+    {% endif %}
+</div>
+{% endblock %}

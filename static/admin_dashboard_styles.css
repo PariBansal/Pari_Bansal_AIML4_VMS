@@ -1,0 +1,310 @@
+/* Global Styles with white base and black text */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Georgia", serif;
+  background-color: white;
+  color: black;
+  background-image: url("{{ url_for('static', filename='1600w-4Iwc1WA2mcM.png') }}");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar/Header - Lilac */
+.navbar {
+  background-color: #c8a2d4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  box-shadow: 0 2px 10px rgba(200, 162, 212, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s ease;
+  animation: blink 2s infinite;
+}
+
+nav ul li a:hover {
+  color: #d8b0d2;
+}
+
+footer {
+  background-color: #c8a2d4;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+main {
+  padding: 60px 20px;
+  min-height: 80vh;
+  background-color: white;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button Styles */
+button {
+  background-color: white;
+  color: black;
+  border: 2px solid #c8a2d4;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  animation: blink 2s infinite;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #d8b0d2;
+  color: white;
+  border-color: #d8b0d2;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 💜 Table Styling for Events and Volunteers */
+.events-table,
+.volunteers-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #c8a2d4;
+  box-shadow: 0 4px 8px rgba(200, 162, 212, 0.2);
+  border-radius: 8px;
+}
+
+.events-table th,
+.volunteers-table th,
+.events-table td,
+.volunteers-table td {
+  border: 1.5px solid #c8a2d4;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.events-table th,
+.volunteers-table th {
+  background-color: #e6cfe9;
+  color: black;
+  font-size: 16px;
+}
+
+.events-table tr:nth-child(even),
+.volunteers-table tr:nth-child(even) {
+  background-color: #f6eef9;
+}
+
+.events-table tr:hover,
+.volunteers-table tr:hover {
+  background-color: #f0dff5;
+}
+
+/* Buttons within Tables */
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-edit {
+  background-color: #ffffff;
+  color: #4b0082;
+  border: 2px solid #c8a2d4;
+}
+
+.btn-edit:hover {
+  background-color: #d8b0d2;
+  color: white;
+}
+
+.btn-delete,
+.btn-message {
+  background-color: #ffffff;
+  color: #8b0000;
+  border: 2px solid #c8a2d4;
+  margin-left: 8px;
+}
+
+.btn-delete:hover {
+  background-color: #e6a5bc;
+  color: white;
+}
+
+.btn-message {
+  color: #008b8b;
+}
+
+.btn-message:hover {
+  background-color: #b0e0e6;
+  color: black;
+}
+
+/* 🌸 Create Event Form Styling */
+.create-event-form {
+  max-width: 700px;
+  margin: 30px auto; /* This centers it horizontally */
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border: 2px solid #c8a2d4;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(200, 162, 212, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-event-form > * {
+  width: 100%;
+}
+
+.create-event-form h2 {
+  text-align: center;
+  color: #4b0082;
+  margin-bottom: 20px;
+}
+
+.create-event-form label {
+  font-weight: bold;
+  color: #4b0082;
+  display: block;
+  margin: 12px 0 6px;
+}
+
+.create-event-form input,
+.create-event-form textarea,
+.create-event-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #c8a2d4;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-family: "Georgia", serif;
+  background-color: #fdf8ff;
+}
+
+.create-event-form button {
+  display: block;
+  width: 100%;
+  background-color: #c8a2d4;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-event-form button:hover {
+  background-color: #b48bcf;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  .events-table,
+  .volunteers-table,
+  .create-event-form {
+    margin: 10px;
+  }
+
+  .create-event-form {
+    padding: 20px;
+  }
+
+  .create-event-form h2 {
+    font-size: 22px;
+  }
+
+  .create-event-form input,
+  .create-event-form textarea,
+  .create-event-form select {
+    padding: 8px;
+  }
+
+  .create-event-form button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Utility Class to Center Elements */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

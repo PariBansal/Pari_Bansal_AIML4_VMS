@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='volunteer_dashboard_styles.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo-img">
+                <span class="brand-name">Volunteer Management Service</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('volunteer.volunteer_profile') }}">Profile</a></li>
+                    <li><a href="{{ url_for('volunteer.upcoming_events') }}">Upcoming Events</a></li>
+                    <li><a href="{{ url_for('volunteer.registered_events') }}">Registered Events</a></li>
+                    <li><a href="{{ url_for('volunteer.logout') }}" class="logout-button">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2025 Volunteer Management Service. All rights reserved.
+    </footer>
+</body>
+</html>

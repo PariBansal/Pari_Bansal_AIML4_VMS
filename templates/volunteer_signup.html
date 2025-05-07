@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo-section">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+            <span class="brand-name">Volunteer Management Service</span>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <div class="signup-container">
+            <div class="form-wrapper">
+                <h2>Volunteer Sign Up</h2>
+                <form id="signupForm" method="POST" action="{{ url_for('volunteer.volunteer_signup') }}">
+                    <!-- First Name -->
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <span id="emailError" style="color: red; display: none;">Please enter a valid email address.</span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="form-group">
+                        <label for="mobile">Mobile</label>
+                        <input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+                        <span id="mobileError" style="color: red; display: none;">Please enter a valid mobile number (only numbers).</span>
+                    </div>
+
+                    <!-- Course -->
+                    <div class="form-group">
+                        <label for="course">Course</label>
+                        <input type="text" id="course" name="course" placeholder="Enter your course" required>
+                    </div>
+
+                    <!-- Semester -->
+                    <div class="form-group">
+                        <label for="semester">Semester</label>
+                        <input type="text" id="semester" name="semester" placeholder="Enter your semester" required>
+                    </div>
+
+                    <!-- Sign Up Button -->
+                    <button type="submit" id="signupButton">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2025 Volunteer Management Service. All rights reserved.
+    </footer>
+
+    <!-- JavaScript for Form Handling and Validation -->
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function (event) {
+            event.preventDefault();  // Prevent the form from submitting normally
+
+            // Get form data
+            const first_name = document.getElementById("first_name").value.trim();
+            const last_name = document.getElementById("last_name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const mobile = document.getElementById("mobile").value.trim();
+            const course = document.getElementById("course").value.trim();
+            const semester = document.getElementById("semester").value.trim();
+
+            // Validate required fields
+            if (!first_name || !last_name || !email || !password || !mobile || !course || !semester) {
+                alert("All fields are required.");
+                return;
+            }
+
+            // Email validation (basic format check)
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").style.display = "block";
+                return;
+            } else {
+                document.getElementById("emailError").style.display = "none";
+            }
+
+            // Mobile validation (must be digits only)
+            const mobilePattern = /^[0-9]{10}$/;
+            if (!mobilePattern.test(mobile)) {
+                document.getElementById("mobileError").style.display = "block";
+                return;
+            } else {
+                document.getElementById("mobileError").style.display = "none";
+            }
+
+            // Create the data object
+            const data = {
+                first_name,
+                last_name,
+                email,
+                password,
+                mobile,
+                course,
+                semester
+            };
+
+            // Send data to the backend using fetch API
+			fetch('/volunteer/volunteer_signup', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: new URLSearchParams(data)
+			})
+			.then(response => response.json())
+			.then(data => {
+				if (data.message) {
+					alert(data.message + " Your Volunteer ID is " + data.volunteer_id);
+					// Redirect to the Volunteer Dashboard after successful registration
+					window.location.href = "{{ url_for('volunteer.volunteer_dashboard') }}";
+				} else {
+					alert(data.error || "An unknown error occurred.");
+				}
+			})
+			.catch(error => {
+				console.error('Error:', error);
+				alert("An error occurred while registering. Please try again.");
+			});
+    });
+    </script>
+</body>
+</html>
